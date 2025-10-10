@@ -1,7 +1,6 @@
-resource "null_resource" "ufw_config" {
+resource "null_resource" "config_ufw" {
   provisioner "remote-exec" {
     inline = [
-      "sudo apt install -y ufw",
       "sudo sed -i 's/IPV6=yes/IPV6=no/g' /etc/default/ufw",
       "sudo ufw --force disable",
       "sudo ufw default deny incoming",
@@ -18,4 +17,19 @@ resource "null_resource" "ufw_config" {
       private_key = file(var.raspberrypi_private_key)
     }
   }
+}
+
+variable "raspberrypi_host" {
+  description = "IP address or hostname of the Raspberry Pi"
+  type        = string
+}
+
+variable "raspberrypi_user" {
+  description = "SSH username for the Raspberry Pi"
+  type        = string
+}
+
+variable "raspberrypi_private_key" {
+  description = "Path to SSH private key"
+  type        = string
 }
