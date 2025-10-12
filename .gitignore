@@ -82,3 +82,4 @@ config.local.*
 
 .idea
 >>>>>>> 9d340ba (refactor)
+/.terraform/
