@@ -84,12 +84,12 @@ variable "raspberrypi_private_key" {
 variable "email_password" {
   description = "Email account password for SMTP"
   type        = string
-  sensitive   = true
+  sensitive   = false # otherise information is not visible in logs
 }
 
 # Add a variable for keystore password
 variable "keystore_password" {
   description = "Keystore password for backend application"
   type        = string
-  sensitive   = true
+  sensitive   = false # otherise information is not visible in logs
 }
