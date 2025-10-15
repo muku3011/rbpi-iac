@@ -51,6 +51,8 @@ module "update_website" {
   raspberrypi_host        = var.raspberrypi_host
   raspberrypi_user        = var.raspberrypi_user
   raspberrypi_private_key = var.raspberrypi_private_key
+  email_password          = var.email_password
+  keystore_password       = var.keystore_password
 }
 
 module "certbot-config" {
@@ -76,4 +78,18 @@ variable "raspberrypi_user" {
 variable "raspberrypi_private_key" {
   description = "Path to SSH private key"
   type        = string
+}
+
+# Add a variable for email password
+variable "email_password" {
+  description = "Email account password for SMTP"
+  type        = string
+  sensitive   = true
+}
+
+# Add a variable for keystore password
+variable "keystore_password" {
+  description = "Keystore password for backend application"
+  type        = string
+  sensitive   = true
 }

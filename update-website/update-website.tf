@@ -60,8 +60,10 @@ resource "null_resource" "update_website" {
 
       "export SSL_KEY_STORE=/home/rbpi/website-backend-manage/keystore.p12",
       "export SSL_KEY_STORE_TYPE=PKCS12",
-      "export SSL_KEY_STORE_PASSWORD=RaspBerryPi@150",
+      "export SSL_KEY_STORE_PASSWORD=var.keystore_password",
       "export SSL_KEY_ALIAS=website-backend",
+      "export EMAIL_ID=muku3011@gmail.com",
+      "export EMAIL_PASSWORD=var.email_password",
 
       "rm -rf /home/rbpi/website-backend-manage/keystore.p12",
       "echo \"Old keystore removed (if existed)\"",
@@ -104,4 +106,18 @@ variable "raspberrypi_user" {
 variable "raspberrypi_private_key" {
   description = "Path to the SSH private key file used for authentication."
   type        = string
+}
+
+# Add a variable for email password
+variable "email_password" {
+  description = "Email account password for SMTP"
+  type        = string
+  sensitive   = true
+}
+
+# Add a variable for keystore password
+variable "keystore_password" {
+  description = "Keystore password for backend application"
+  type        = string
+  sensitive   = true
 }
