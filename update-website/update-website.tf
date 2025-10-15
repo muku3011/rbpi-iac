@@ -60,10 +60,10 @@ resource "null_resource" "update_website" {
 
       "export SSL_KEY_STORE=/home/rbpi/website-backend-manage/keystore.p12",
       "export SSL_KEY_STORE_TYPE=PKCS12",
-      "export SSL_KEY_STORE_PASSWORD=var.keystore_password",
+      "export SSL_KEY_STORE_PASSWORD=${var.keystore_password}",
       "export SSL_KEY_ALIAS=website-backend",
       "export EMAIL_ID=muku3011@gmail.com",
-      "export EMAIL_PASSWORD=var.email_password",
+      "export EMAIL_PASSWORD=${var.email_password}",
 
       "rm -rf /home/rbpi/website-backend-manage/keystore.p12",
       "echo \"Old keystore removed (if existed)\"",
@@ -112,12 +112,12 @@ variable "raspberrypi_private_key" {
 variable "email_password" {
   description = "Email account password for SMTP"
   type        = string
-  sensitive   = true
+  sensitive   = false # otherise information is not visible in logs
 }
 
 # Add a variable for keystore password
 variable "keystore_password" {
   description = "Keystore password for backend application"
   type        = string
-  sensitive   = true
+  sensitive   = false # otherise information is not visible in logs
 }
